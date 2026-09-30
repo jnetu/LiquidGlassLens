@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="studio">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liquid Glass Lens — Optical Glass UI Design System</title>
+  <meta name="description" content="An interactive liquid glass playground with real optical displacement, movable lenses, and creative interface examples.">
+
+  <!-- Google Fonts: Space Grotesk, Plus Jakarta Sans, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@600;700;800&amp;display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css?v=20260929-2">
+</head>
+<body>
+
+  <!-- Ambient Dynamic Lighting & Grid -->
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="ambient-grid"></div>
+    <div class="ambient-orb ambient-orb-1"></div>
+    <div class="ambient-orb ambient-orb-2"></div>
+    <div class="ambient-orb ambient-orb-3"></div>
+  </div>
+
+  <div class="site-wrapper">
+
+    <!-- ==========================================================================
+         FLOATING HEADER / NAVIGATION
+         ========================================================================== -->
+    <header class="site-header">
+      <nav class="header-nav" aria-label="Main Navigation">
+        <a href="#hero" class="nav-brand">
+          <div class="brand-lens-icon"></div>
+          <span class="brand-title">LiquidLens</span>
+        </a>
+
+        <ul class="nav-menu">
+          <li><a href="#lab" class="nav-link">Lens Lab</a></li>
+          <li><a href="#showcase" class="nav-link">Creative Applications</a></li>
+          <li><a href="#anatomy" class="nav-link">Optical Anatomy</a></li>
+          <li><a href="#code" class="nav-link">Integration Code</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <!-- Environment Lighting Theme Switcher -->
+          <div class="theme-picker" title="Change Environment Lighting">
+            <button class="theme-btn theme-btn-studio active" data-set-theme="studio" aria-label="Studio Lighting"></button>
+            <button class="theme-btn theme-btn-mesh" data-set-theme="mesh" aria-label="Chromatic Mesh"></button>
+            <button class="theme-btn theme-btn-obsidian" data-set-theme="obsidian" aria-label="Obsidian Dark"></button>
+            <button class="theme-btn theme-btn-aurora" data-set-theme="aurora" aria-label="Aurora Teal"></button>
+          </div>
+
+          <div class="fx-layer header-cta-wrapper">
+            <a href="#code" class="box box-sm header-cta-pill" style="--w: 130px; --h: 42px; --tr: 20%;" aria-label="Get Component Code">
+              <span class="text">Get Code</span>
+              <span class="circle-overlay"></span>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- ==========================================================================
+         HERO SECTION
+         ========================================================================== -->
+    <main>
+      <section id="hero" class="hero-section">
+        <div class="hero-pill-badge">
+          <span class="sparkle">✦</span>
+          <span>Optical UI Playground • Real Pixel Displacement</span>
+        </div>
+
+        <h1 class="hero-headline">
+          Interfaces Sculpted in <br>
+          <span class="text-gradient">Pure Liquid Glass.</span>
+        </h1>
+
+        <p class="hero-lead">
+          Move a lens across type, color, and geometry to see the scene actually bend through glass. Explore the same optical surface in controls, cards, docks, and more.
+        </p>
+
+        <!-- Main Hero CTA Group -->
+        <div class="hero-cta-group">
+          <!-- ORIGINAL SPECIFICATION COMPONENT INTEGRATED RESPONSIBLY -->
+          <div class="container fx-layer">
+            <div class="top">
+              <a href="#lab" class="box start-btn box-hero" style="--w: 260px; --h: 75px; --tr: 15%;" aria-label="Open the lens lab">
+                <span class="text">Get started</span>
+                <div class="btn-icon">
+                  <svg
+                    class="svg"
+                    viewBox="0 0 1024 1024"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M779.180132 473.232045 322.354755 16.406668c-21.413706-21.413706-56.121182-21.413706-77.534887 0-21.413706 21.413706-21.413706 56.122205 0 77.534887l418.057421 418.057421L244.819868 930.057421c-21.413706 21.413706-21.413706 56.122205 0 77.534887 10.706853 10.706853 24.759917 16.059767 38.767955 16.059767s28.061103-5.353938 38.767955-16.059767L779.180132 550.767955C800.593837 529.35425 800.593837 494.64575 779.180132 473.232045z"
+                    ></path>
+                  </svg>
+                </div>
+                <span class="circle-overlay"></span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Secondary Liquid Pill -->
+          <div class="fx-layer">
+            <a href="#lab" class="box secondary-glass-btn" role="button" aria-label="Explore Interactive Lab">
+              <span class="text">Explore Lab</span>
+              <div class="btn-icon-ghost">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m21 21-6-6m6 6v-4.8m0 4.8h-4.8"></path>
+                  <circle cx="10" cy="10" r="7"></circle>
+                </svg>
+              </div>
+              <span class="circle-overlay"></span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Live Metrics / Spec Tiles -->
+        <div class="hero-specs-row">
+          <div class="spec-tile">
+            <div class="spec-val">2D <span class="unit">displacement</span></div>
+            <div class="spec-label">Scene pixels bend in both axes</div>
+          </div>
+          <div class="spec-tile">
+            <div class="spec-val">4 <span class="unit">themes</span></div>
+            <div class="spec-label">Different lighting environments</div>
+          </div>
+          <div class="spec-tile">
+            <div class="spec-val">4 <span class="unit">shapes</span></div>
+            <div class="spec-label">Live lens geometry presets</div>
+          </div>
+          <div class="spec-tile">
+            <div class="spec-val">10 <span class="unit">scenes</span></div>
+            <div class="spec-label">Creative application examples</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           SECTION 1: THE INTERACTIVE LIQUID LENS LABORATORY (HERO PLAYGROUND)
+           ========================================================================== -->
+      <section id="lab" class="section-container">
+        <div class="section-header">
+          <span class="section-tag">Interactive Sandbox</span>
+          <h2 class="section-title">A little less blur. A lot more bend.</h2>
+          <p class="section-subtitle">
+            Drag across the letters. Follow a straight line through the edge. This is where transparency becomes a material. Use arrow keys to move the focused lens.
+          </p>
+        </div>
+
+        <div class="lens-lab-grid">
+          <!-- The Interactive Canvas -->
+          <div class="lens-canvas-viewport optical-stage" id="lensCanvas">
+            <div class="optical-scene lab-art" data-scene="type" aria-hidden="true">
+              <div class="scene-grid"></div><div class="scene-orbit"></div>
+              <div class="scene-kicker">MATERIAL STUDY — No. 001</div>
+              <div class="scene-type">MAKE<br>IT <em>FLOW.</em></div>
+              <div class="scene-stripe"></div>
+              <div class="scene-caption"><span>Light, with a little latitude.</span><span>↗ 22.5°</span></div>
+            </div>
+            <!-- The Draggable Interactive Lens Element -->
+            <div class="fx-layer interactive-lens-element" id="activeInteractiveLens">
+              <div class="box" id="lensBox" role="group" tabindex="0" aria-label="Movable glass lens. Use arrow keys to move; Shift for larger steps." style="--w: 220px; --h: 120px; --r: 32px; --tr: 15%;">
+                <span class="circle-overlay"></span>
+              </div>
+              <div class="lens-badge-label">Drag / tap / arrow keys</div>
+            </div>
+          </div>
+
+          <!-- Controls Panel -->
+          <div class="lens-controls-panel">
+            <div class="panel-title">
+              <span>Make it yours</span>
+              <span style="font-size: 0.8rem; color: var(--accent-color);">Live optics ↗</span>
+            </div>
+
+            <!-- Preset Shapes -->
+            <div class="preset-shape-selector">
+              <button class="shape-btn" data-preset="circle">Circle Droplet</button>
+              <button class="shape-btn" data-preset="pill">Dynamic Pill</button>
+              <button class="shape-btn active" data-preset="squircle">Squircle Lens</button>
+              <button class="shape-btn" data-preset="card">Glass Card</button>
+            </div>
+
+            <!-- Slider: Width -->
+            <div class="control-group">
+              <div class="control-label">
+                <label for="sliderWidth">Width</label>
+                <span class="val-display" id="valWidth">220px</span>
+              </div>
+              <input type="range" class="range-slider" id="sliderWidth" min="80" max="380" value="220">
+            </div>
+
+            <!-- Slider: Height -->
+            <div class="control-group">
+              <div class="control-label">
+                <label for="sliderHeight">Height</label>
+                <span class="val-display" id="valHeight">120px</span>
+              </div>
+              <input type="range" class="range-slider" id="sliderHeight" min="50" max="220" value="120">
+            </div>
+
+            <!-- Slider: Curvature Radius -->
+            <div class="control-group">
+              <div class="control-label">
+                <label for="sliderRadius">Corner radius</label>
+                <span class="val-display" id="valRadius">32px</span>
+              </div>
+              <input type="range" class="range-slider" id="sliderRadius" min="8" max="190" value="32">
+            </div>
+
+            <!-- Slider: Refraction Threshold -->
+            <div class="control-group">
+              <div class="control-label">
+                <label for="sliderTr">Highlight spread</label>
+                <span class="val-display" id="valTr">15%</span>
+              </div>
+              <input type="range" class="range-slider" id="sliderTr" min="5" max="45" value="15">
+            </div>
+
+            <div class="control-group">
+              <div class="control-label">
+                <label for="sliderStrength">Refraction strength</label>
+                <span class="val-display" id="valStrength">22px</span>
+              </div>
+              <input type="range" class="range-slider" id="sliderStrength" min="0" max="40" value="22">
+            </div>
+
+            <div class="control-group">
+              <div class="control-label"><label for="sliderBlur">Frosting</label><span class="val-display" id="valBlur">0.3px</span></div>
+              <input type="range" class="range-slider" id="sliderBlur" min="0" max="5" step="0.1" value="0.3">
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="sceneSelect">Behind the glass</label>
+              <select id="sceneSelect"><option value="type">01 / Typography</option><option value="grid">02 / Precision grid</option><option value="art">03 / Color field</option></select>
+            </div>
+            <div class="lab-actions">
+              <button class="utility-btn active" id="compareRefraction" aria-pressed="true">Refraction on</button>
+              <button class="utility-btn" id="animateScene" aria-pressed="false">Animate scene</button>
+              <button class="utility-btn" id="resetLens">Reset</button>
+            </div>
+            <p class="lab-hint">Turn refraction off to compare the exact same scene. Try the grid to see the curved edge.</p>
+            <!-- Live Code Snippet Output -->
+            <div class="live-css-snippet">
+              <button class="btn-copy-live-css" id="btnCopyLiveCss">Copy</button>
+              <pre id="liveSnippetText">.box {
+  --w: 220px;
+  --h: 120px;
+  --r: 32px;
+  --tr: 15%;
+}
+/* SVG displacement scale: 0.16 */</pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           SECTION 2: CREATIVE APPLICATIONS GALLERY (THE COMPREHENSIVE BENTO GRID)
+           ========================================================================== -->
+      <section id="showcase" class="section-container">
+        <div class="section-header">
+          <span class="section-tag">Creative Ecosystem</span>
+          <h2 class="section-title">Infinite Possibilities of Liquid Glass</h2>
+          <p class="section-subtitle">
+            Ten small experiments in light. Press, slide, switch, and explore — every demo has something to try.
+          </p>
+        </div>
+
+        <div class="gallery-filter" aria-label="Filter applications">
+          <button class="utility-btn active" data-category="all" aria-pressed="true">All experiments <span>10</span></button>
+          <button class="utility-btn" data-category="navigation" aria-pressed="false">Navigation</button>
+          <button class="utility-btn" data-category="media" aria-pressed="false">Media</button>
+          <button class="utility-btn" data-category="controls" aria-pressed="false">Controls</button>
+          <button class="utility-btn" data-category="widgets" aria-pressed="false">Widgets</button>
+        </div>
+        <div class="bento-grid-container">
+
+          <!-- APPLICATION 1: The visionOS / macOS Liquid Glass Dock -->
+          <article id="demo-dock" class="bento-item bento-dock-app" data-category="navigation">
+            <div class="bento-header">
+              <span class="bento-app-tag">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"></rect><path d="M3 9h18"></path></svg>
+                Application 01 • Desktop & Spatial OS
+              </span>
+              <h3 class="bento-item-title">Liquid Glass Interactive Dock</h3>
+              <p class="bento-item-desc">
+                A refractive shelf over a graphic wallpaper. Select an app and watch the active indicator follow.
+              </p>
+            </div>
+
+            <div class="dock-stage-wrapper optical-stage" data-optical-stage>
+              <div class="fx-layer">
+                <div class="liquid-dock-shelf" id="liquidDock">
+                  <!-- Dock Item 1: Finder -->
+                  <div class="box dock-icon-capsule" role="button" tabindex="0">
+                    <span class="dock-tooltip">Finder</span>
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    <div class="dock-dot"></div>
+                    <span class="circle-overlay"></span>
+                  </div>
+
+                  <!-- Dock Item 2: Browser -->
+                  <div class="box dock-icon-capsule" role="button" tabindex="0">
+                    <span class="dock-tooltip">Safari Browser</span>
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+                    <div class="dock-dot"></div>
+                    <span class="circle-overlay"></span>
+                  </div>
+
+                  <!-- Dock Item 3: Music -->
+                  <div class="box dock-icon-capsule" role="button" tabindex="0">
+                    <span class="dock-tooltip">Audio Engine</span>
+                    <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                    <span class="circle-overlay"></span>
+                  </div>
+
+                  <!-- Dock Item 4: Camera -->
+                  <div class="box dock-icon-capsule" role="button" tabindex="0">
+                    <span class="dock-tooltip">Lens Camera</span>
+                    <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                    <span class="circle-overlay"></span>
+                  </div>
+
+                  <!-- Dock Item 5: Terminal -->
+                  <div class="box dock-icon-capsule" role="button" tabindex="0">
+                    <span class="dock-tooltip">Terminal CLI</span>
+                    <svg viewBox="0 0 24 24"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+                    <span class="circle-overlay"></span>
+                  </div>
+
+                  <!-- Dock Item 6: Preferences -->
+                  <div class="box dock-icon-capsule" role="button" tabindex="0">
+                    <span class="dock-tooltip">System Controls</span>
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                    <span class="circle-overlay"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- APPLICATION 2: Audiophile Liquid Glass Media Player -->
+          <article id="demo-player" class="bento-item bento-media-app" data-category="media">
+            <div class="bento-header">
+              <span class="bento-app-tag">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"></path></svg>
+                Application 02 • Audiophile Media
+              </span>
+              <h3 class="bento-item-title">Liquid Acoustic Player</h3>
+              <p class="bento-item-desc">
+                A simulated player with glass transport controls. Play, switch tracks, or scrub the timeline. Visual demo; no audio.
+              </p>
+            </div>
+
+            <div class="player-stage optical-stage" data-optical-stage>
+              <!-- Album Artwork framed in squircle glass -->
+              <div class="fx-layer">
+                <div class="box album-lens-holder" style="--w: 120px; --h: 120px; --r: 28px; --tr: 15%;">
+                  <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #6366f1, #ec4899, #f59e0b); border-radius: 26px; display: grid; place-items: center; color: #fff;">
+                    <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                  </div>
+                  <span class="circle-overlay"></span>
+                </div>
+              </div>
+
+              <!-- Track Metadata -->
+              <div class="track-meta">
+                <div class="track-title">Sub-surface Resonance</div>
+                <div class="track-artist">Crystalline Optics Ensemble • 96kHz Lossless</div>
+              </div>
+
+              <!-- Waveform Visualizer -->
+              <div class="sound-wave-bars" id="audioWaveBars" aria-hidden="true">
+                <div class="sound-bar"></div>
+                <div class="sound-bar"></div>
+                <div class="sound-bar"></div>
+                <div class="sound-bar"></div>
+                <div class="sound-bar"></div>
+                <div class="sound-bar"></div>
+                <div class="sound-bar"></div>
+              </div>
+
+              <!-- Interactive Glass Scrubber -->
+              <div class="player-scrubber-row">
+                <span id="elapsedTime">01:42</span>
+                <div class="scrubber-track-container" id="scrubberTrack" role="slider" tabindex="0" aria-label="Playback position" aria-valuemin="0" aria-valuemax="238" aria-valuenow="102">
+                  <div class="scrubber-fill" id="scrubberFill"></div>
+                  <div class="scrubber-bead" id="scrubberBead"></div>
+                </div>
+                <span id="durationTime">03:58</span>
+              </div>
+
+              <!-- Media Transport Controls (Circular Glass Lenses) -->
+              <div class="player-controls-row fx-layer">
+                <!-- Prev Button -->
+                <button class="box box-circle ctrl-btn-small" style="--w: 50px; --h: 50px; --tr: 20%;" aria-label="Previous Track">
+                  <svg viewBox="0 0 24 24"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5" stroke="currentColor" stroke-width="3"></line></svg>
+                  <span class="circle-overlay"></span>
+                </button>
+
+                <!-- Play / Pause Button -->
+                <button class="box box-circle ctrl-btn-play" id="btnPlayPause" style="--w: 68px; --h: 68px; --tr: 15%;" aria-label="Play or Pause">
+                  <svg viewBox="0 0 24 24" id="playIconSvg"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                  <span class="circle-overlay"></span>
+                </button>
+
+                <!-- Next Button -->
+                <button class="box box-circle ctrl-btn-small" style="--w: 50px; --h: 50px; --tr: 20%;" aria-label="Next Track">
+                  <svg viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="3"></line></svg>
+                  <span class="circle-overlay"></span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- APPLICATION 3: Dynamic Island / Glass Capsule Alerts -->
+          <article id="demo-capsule" class="bento-item bento-island-app" data-category="widgets">
+            <div class="bento-header">
+              <span class="bento-app-tag">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                Application 03 • Adaptive HUD
+              </span>
+              <h3 class="bento-item-title">Liquid Capsule Morph (Dynamic Island)</h3>
+              <p class="bento-item-desc">
+                An adaptive HUD notification pill that morphs fluidly between system status, incoming calls, and biometrics.
+              </p>
+            </div>
+
+            <div class="island-demo-stage optical-stage" data-optical-stage>
+              <!-- Morphing Glass Capsule -->
+              <div class="fx-layer">
+                <div class="box dynamic-capsule-lens" id="morphingCapsule" style="--w: 310px; --h: 66px; --tr: 16%;">
+                  
+                  <!-- State 1: Biometric -->
+                  <div class="capsule-content-state active" id="stateBio">
+                    <div class="capsule-badge-icon" style="background:#10b981;">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <div class="capsule-info">
+                      <div class="capsule-primary-text">Face ID Authenticated</div>
+                      <div class="capsule-secondary-text">Optical Biometrics Passed</div>
+                    </div>
+                    <span class="capsule-action-tag">READY</span>
+                  </div>
+
+                  <!-- State 2: Spatial Audio -->
+                  <div class="capsule-content-state" id="stateAudio">
+                    <div class="capsule-badge-icon" style="background:#3b82f6;">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>
+                    </div>
+                    <div class="capsule-info">
+                      <div class="capsule-primary-text">Spatial Audio Connected</div>
+                      <div class="capsule-secondary-text">Head Tracking Enabled</div>
+                    </div>
+                    <span class="capsule-action-tag">ANC ON</span>
+                  </div>
+
+                  <!-- State 3: Incoming Call -->
+                  <div class="capsule-content-state" id="stateCall">
+                    <div class="capsule-badge-icon" style="background:#f59e0b;">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </div>
+                    <div class="capsule-info">
+                      <div class="capsule-primary-text">Cupertino Labs</div>
+                      <div class="capsule-secondary-text">Design System Review...</div>
+                    </div>
+                    <span class="capsule-action-tag" style="color:#ef4444;">ACTIVE</span>
+                  </div>
+
+                  <span class="circle-overlay"></span>
+                </div>
+              </div>
+
+              <!-- Capsule Trigger Buttons -->
+              <div class="island-states-nav">
+                <button class="island-trigger-btn active" data-state="stateBio">Face ID</button>
+                <button class="island-trigger-btn" data-state="stateAudio">Spatial Audio</button>
+                <button class="island-trigger-btn" data-state="stateCall">Incoming Call</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- APPLICATION 4: FinTech Holographic 3D Glass Smart Card -->
+          <article id="demo-card" class="bento-item bento-card-app" data-category="widgets">
+            <div class="bento-header">
+              <span class="bento-app-tag">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                Application 04 • Smart Identity & FinTech
+              </span>
+              <h3 class="bento-item-title">Floating Glass Pass</h3>
+              <p class="bento-item-desc">
+                Move your pointer to float the card over its patterned backdrop. The scene stays in place as the glass moves.
+              </p>
+            </div>
+
+            <div class="card-tilt-container optical-stage" id="cardTiltStage" data-optical-stage>
+              <div class="fx-layer">
+                <div class="box holographic-glass-card" id="tiltGlassCard" style="--w: 320px; --h: 195px; --r: 22px; --tr: 12%;">
+                  <!-- Top Row -->
+                  <div class="card-top-row">
+                    <div class="emv-chip"></div>
+                    <svg class="contactless-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20" stroke-width="3"/></svg>
+                  </div>
+
+                  <!-- Middle: Card Number -->
+                  <div class="card-number">4829 •••• •••• 9104</div>
+
+                  <!-- Bottom: Cardholder info & Brand -->
+                  <div class="card-bottom-row">
+                    <div>
+                      <div class="card-holder-name">JOÃO SILVA</div>
+                      <div class="card-expiry">EXP 09/30</div>
+                    </div>
+                    <div class="card-brand-logo">
+                      <div class="card-brand-circle brand-red"></div>
+                      <div class="card-brand-circle brand-yellow"></div>
+                    </div>
+                  </div>
+
+                  <span class="circle-overlay"></span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- APPLICATION 5: Form Suite & Physical Glass Controls -->
+          <article id="demo-controls" class="bento-item bento-controls-app" data-category="controls">
+            <div class="bento-header">
+              <span class="bento-app-tag">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                Application 05 • Tactile Control Suite
+              </span>
+              <h3 class="bento-item-title">Liquid Search, Toggles & Tabs</h3>
+              <p class="bento-item-desc">
+                Physical liquid glass inputs with fluid sliding knobs, glowing focus caustics, and segmented pills.
+              </p>
+            </div>
+
+            <div class="controls-suite-content optical-stage" data-optical-stage>
+              <!-- Glass Search Bar -->
+              <div class="fx-layer">
+                <div class="box glass-search-input-wrap" style="--w: 100%; --h: 56px; --tr: 14%;">
+                  <input type="text" class="glass-search-field" placeholder="Find an experiment…" aria-label="Find an experiment">
+                  <div class="glass-search-btn-icon" role="button" tabindex="0" aria-label="Execute Search">
+                    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  </div>
+                  <span class="circle-overlay"></span>
+                </div>
+              </div>
+              <div class="search-status" id="gallerySearchStatus" role="status" aria-live="polite">Search the examples above by name or use case.</div>
+
+              <!-- Segmented Control Tabs -->
+              <div>
+                <div class="glass-segmented-shell">
+                  <button class="segmented-pill-item active">Standard</button>
+                  <button class="segmented-pill-item">Polarized</button>
+                  <button class="segmented-pill-item">Caustic</button>
+                  <button class="segmented-pill-item">Liquid</button>
+                </div>
+              </div>
+
+              <!-- Tactile Glass Toggle Switch -->
+              <div class="toggle-switch-row">
+                <div class="toggle-label-wrap">
+                  <span class="toggle-title">Specular Dispersion Filter</span>
+                  <span class="toggle-subtitle">Split red and blue along the glass edge</span>
+                </div>
+                <div class="fx-layer">
+                  <div class="box liquid-glass-switch active" id="tactileGlassSwitch" aria-label="Chromatic dispersion" role="switch" aria-checked="true" tabindex="0">
+                    <div class="switch-glass-knob"></div>
+                    <span class="circle-overlay"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+
+          <article id="demo-toolbar" class="bento-item bento-extra" data-category="controls">
+            <div class="bento-header"><span class="bento-app-tag">Application 06 • Creative tools</span><h3 class="bento-item-title">A Toolbar with a View</h3><p class="bento-item-desc">Switch tools. A glass selection moves across an uninterrupted canvas.</p></div>
+            <div class="optical-stage toolbar-stage" data-art="peach">
+              <div class="floating-toolbar box" style="--w: 300px; --h: 64px; --r: 22px;" role="group" aria-label="Drawing tool">
+                <button aria-label="Select tool" aria-pressed="true" data-tool="Select" class="tool-btn active">↖</button>
+                <button aria-label="Pen tool" aria-pressed="false" data-tool="Pen" class="tool-btn">✎</button>
+                <button aria-label="Shape tool" aria-pressed="false" data-tool="Shape" class="tool-btn">□</button>
+                <button aria-label="Text tool" aria-pressed="false" data-tool="Text" class="tool-btn">T</button>
+                <button aria-label="Pan tool" aria-pressed="false" data-tool="Pan" class="tool-btn">✥</button>
+              </div>
+              <span class="demo-status" id="toolStatus" role="status">Select tool · pick your next mark</span>
+            </div>
+          </article>
+          <article id="demo-notification" class="bento-item bento-extra" data-category="widgets">
+            <div class="bento-header"><span class="bento-app-tag">Application 07 • Notifications</span><h3 class="bento-item-title">Something Good Just Landed</h3><p class="bento-item-desc">A floating notification that leaves the world behind it visible.</p></div>
+            <div class="optical-stage notification-stage" data-art="blue">
+              <div class="box notification-card" id="demoNotification" style="--w: 340px; --h: 106px; --r: 24px;"><span class="notification-icon">✦</span><div><strong>A fresh perspective</strong><p>Your new material is ready.</p><small>Liquid Studio · just now</small></div><button class="dismiss-btn" id="dismissNotification" aria-label="Dismiss notification">×</button></div>
+              <button class="utility-btn demo-status" id="restoreNotification">Replay notification ↗</button>
+            </div>
+          </article>
+          <article id="demo-weather" class="bento-item bento-extra" data-category="widgets">
+            <div class="bento-header"><span class="bento-app-tag">Application 08 • Ambient data</span><h3 class="bento-item-title">Weather, Through a Window</h3><p class="bento-item-desc">Switch the forecast and the landscape beneath your glass changes with it.</p></div>
+            <div class="optical-stage weather-stage" data-art="sunny">
+              <div class="box weather-widget" style="--w: 230px; --h: 200px; --r: 32px;"><span class="weather-location">FORTALEZA · DEMO</span><span class="weather-temp" id="weatherTemp">29°</span><span id="weatherSummary">☀ Clear skies</span><button class="weather-cycle" id="changeWeather">Change weather ↗</button></div>
+            </div>
+          </article>
+          <article id="demo-map" class="bento-item bento-extra" data-category="navigation">
+            <div class="bento-header"><span class="bento-app-tag">Application 09 • Maps & wayfinding</span><h3 class="bento-item-title">A New Point of View</h3><p class="bento-item-desc">Follow the marker across a miniature map. Streets bend beneath its edge.</p></div>
+            <div class="optical-stage map-stage" data-art="map">
+              <button class="box map-marker" id="mapMarker" style="--w: 156px; --h: 64px; --r: 24px;" aria-label="Move to the next map destination"><span id="mapLabel">↗ The studio</span></button>
+              <button class="utility-btn demo-status" id="nextPlace">Next destination →</button>
+            </div>
+          </article>
+          <article id="demo-dialog" class="bento-item bento-extra bento-modal-app" data-category="navigation">
+            <div class="bento-header"><span class="bento-app-tag">Application 10 • Dialogs & overlays</span><h3 class="bento-item-title">Room for an Idea</h3><p class="bento-item-desc">Open a glass dialog. A larger surface keeps a calm center and a strongly refractive perimeter.</p></div>
+            <div class="optical-stage modal-stage" data-art="violet"><button class="box" id="openGlassDialog" style="--w: 220px; --h: 66px; --r: 24px;"><span class="text">Open a new perspective ↗</span></button></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           SECTION 3: OPTICAL ANATOMY (INTERACTIVE LAYER BREAKDOWN)
+           ========================================================================== -->
+      <section id="anatomy" class="section-container">
+        <div class="section-header">
+          <span class="section-tag">Deep-Dive Mechanics</span>
+          <h2 class="section-title">Anatomy of a Liquid Lens</h2>
+          <p class="section-subtitle">
+            The displaced backdrop makes lines bend. Rim lighting and shadows supply the polished finish. Toggle each layer to see its contribution.
+          </p>
+        </div>
+
+        <div class="anatomy-layout">
+          <!-- Live Preview Box with Toggleable Layers -->
+          <div class="anatomy-visual-stage optical-stage" data-optical-stage>
+            <div class="fx-layer" id="anatomyFxWrapper">
+              <div class="box anatomy-preview-box" id="anatomyTargetBox" style="--w: 240px; --h: 75px; --tr: 15%;">
+                <span class="text" id="anatomyTextLayer">Optical Bevel</span>
+                <div class="btn-icon">
+                  <svg class="svg" viewBox="0 0 1024 1024"><path fill="#fff" d="M779.18 473.23 322.35 16.41c-21.41-21.41-56.12-21.41-77.53 0s-21.41 56.12 0 77.53l418.06 418.06-418.06 418.06c-21.41 21.41-21.41 56.12 0 77.53 10.71 10.71 24.76 16.06 38.77 16.06s28.06-5.35 38.77-16.06l456.82-456.82c21.41-21.42 21.41-56.13 0-77.54z"/></svg>
+                </div>
+                <span class="circle-overlay" id="anatomyCircleOverlay"></span>
+              </div>
+            </div>
+            <div class="anatomy-stage-notice">Interactive Preview: Toggle layers on the right</div>
+          </div>
+
+          <!-- The 5 Optical Layers -->
+          <div class="anatomy-layers-list">
+            <!-- Layer 1 -->
+            <button class="layer-toggle-card" data-layer-target="refraction" aria-pressed="true">
+              <span class="layer-info-left">
+                <span class="layer-num-badge">1</span>
+                <span class="layer-meta-text">
+                  <span class="layer-name">Shape-aware refraction</span>
+                  <span class="layer-css-code">feDisplacementMap: R + G channels</span>
+                </span>
+              </span>
+              <span class="layer-checkbox-mock">✓</span>
+            </button>
+
+            <!-- Layer 2 -->
+            <button class="layer-toggle-card" data-layer-target="insets" aria-pressed="true">
+              <span class="layer-info-left">
+                <span class="layer-num-badge">2</span>
+                <span class="layer-meta-text">
+                  <span class="layer-name">Surface depth (.box)</span>
+                  <span class="layer-css-code">Inset rim and soft ambient shadow.</span>
+                </span>
+              </span>
+              <span class="layer-checkbox-mock">✓</span>
+            </button>
+
+            <!-- Layer 3 -->
+            <button class="layer-toggle-card" data-layer-target="coreShadow" aria-pressed="true">
+              <span class="layer-info-left">
+                <span class="layer-num-badge">3</span>
+                <span class="layer-meta-text">
+                  <span class="layer-name">Soft edge shadow (.box:before)</span>
+                  <span class="layer-css-code">A soft shadow gives the surface depth.</span>
+                </span>
+              </span>
+              <span class="layer-checkbox-mock">✓</span>
+            </button>
+
+            <!-- Layer 4 -->
+            <button class="layer-toggle-card" data-layer-target="specular" aria-pressed="true">
+              <span class="layer-info-left">
+                <span class="layer-num-badge">4</span>
+                <span class="layer-meta-text">
+                  <span class="layer-name">Directional reflection (.box:after)</span>
+                  <span class="layer-css-code">linear-gradient(135deg, light, clear, light)</span>
+                </span>
+              </span>
+              <span class="layer-checkbox-mock">✓</span>
+            </button>
+
+            <!-- Layer 5 -->
+            <button class="layer-toggle-card" data-layer-target="rim" aria-pressed="true">
+              <span class="layer-info-left">
+                <span class="layer-num-badge">5</span>
+                <span class="layer-meta-text">
+                  <span class="layer-name">Inner glass rim (.circle-overlay)</span>
+                  <span class="layer-css-code">border: 1px solid rgb(255 255 255 / 28%)</span>
+                </span>
+              </span>
+              <span class="layer-checkbox-mock">✓</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           SECTION 4: CODE EXPORTER & INTEGRATION PLAYGROUND
+           ========================================================================== -->
+      <section id="code" class="code-exporter-section">
+        <div class="section-header">
+          <span class="section-tag">Integration Reference</span>
+          <h2 class="section-title">Drop-in Code Integration</h2>
+          <p class="section-subtitle">
+            Use an explicit scene layer and attach a lens with the reusable optics engine. Each shape gets its own generated map; no image asset or build step is needed. Scene replicas keep the demos consistent across browser engines.
+          </p>
+        </div>
+
+        <div class="code-tabs-wrapper">
+          <div class="code-tabs-header">
+            <div class="code-tabs-buttons">
+              <button class="code-tab-btn active" data-tab="html">HTML Markup</button>
+              <button class="code-tab-btn" data-tab="css">CSS Engine</button>
+              <button class="code-tab-btn" data-tab="js">JavaScript</button>
+            </div>
+            <button class="copy-all-btn" id="btnCopyMainCode">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span>Copy Code</span>
+            </button>
+          </div>
+
+          <pre class="code-panel-content" id="panelHtml"><code></code></pre>
+          <pre class="code-panel-content" id="panelCss" hidden><code></code></pre>
+          <pre class="code-panel-content" id="panelJs" hidden><code></code></pre>
+
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           SECTION 5: GRAND FINAL CTA
+           ========================================================================== -->
+      <section class="final-cta-section">
+        <div class="fx-layer">
+          <div class="box final-cta-card">
+            <h2 class="final-cta-title">Sculpt Your Next Interface in Liquid Glass</h2>
+            <p class="final-cta-lead">
+              Explore optical surfaces across navigation, media, identity, and controls. The shared refraction engine generates a new surface map for every lens geometry.
+            </p>
+            <a href="#lab" class="box start-btn" style="--w: 260px; --h: 75px; --tr: 15%;" aria-label="Open the interactive lens lab">
+              <span class="text">Get started</span>
+              <div class="btn-icon">
+                <svg class="svg" viewBox="0 0 1024 1024"><path fill="#fff" d="M779.18 473.23 322.35 16.41c-21.41-21.41-56.12-21.41-77.53 0s-21.41 56.12 0 77.53l418.06 418.06-418.06 418.06c-21.41 21.41-21.41 56.12 0 77.53 10.71 10.71 24.76 16.06 38.77 16.06s28.06-5.35 38.77-16.06l456.82-456.82c21.41-21.42 21.41-56.13 0-77.54z"/></svg>
+              </div>
+              <span class="circle-overlay"></span>
+            </a>
+            <span class="circle-overlay"></span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <ul class="footer-nav">
+        <li><a href="#hero" class="footer-link">Overview</a></li>
+        <li><a href="#lab" class="footer-link">Lens Lab</a></li>
+        <li><a href="#showcase" class="footer-link">Applications</a></li>
+        <li><a href="#anatomy" class="footer-link">Anatomy</a></li>
+        <li><a href="#code" class="footer-link">Documentation</a></li>
+      </ul>
+      <div>Liquid Glass Lens Playground • CSS, SVG optics, and lightweight JavaScript</div>
+    </footer>
+  </div>
+
+  <!-- Toast Notification for Code Copy -->
+  <div class="glass-toast" id="copyToast" role="status" aria-live="polite">Code snippet copied to clipboard!</div>
+
+  <dialog id="glassDialog" aria-labelledby="dialogTitle">
+    <div class="optical-stage dialog-stage" data-art="violet">
+      <div class="box glass-dialog-card" style="--w: 420px; --h: auto; --r: 32px;">
+        <span class="section-tag">A change of perspective</span><h2 id="dialogTitle">Let an idea<br>take shape.</h2><p>Light passes through. The edges bend the scene. Your next experiment starts here.</p><button class="utility-btn" id="closeGlassDialog">Back to exploring ↗</button>
+      </div>
+    </div>
+  </dialog>
+  <noscript><p class="noscript-note">Enable JavaScript to use the refraction engine and interactive experiments.</p></noscript>
+  <script src="optics.js?v=20260929-2"></script>
+  <script src="script.js?v=20260929-2"></script>
+</body>
+</html>

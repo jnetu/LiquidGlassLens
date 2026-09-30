@@ -1,0 +1,40 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Integration verification</title><style>.optical-filter-defs { position: absolute; width: 0; height: 0; }
+.optical-stage { position: relative; overflow: hidden; height: 360px;
+  border-radius: 24px; isolation: isolate; }
+.optical-scene { position: absolute; inset: 0; overflow: hidden;
+  background: repeating-linear-gradient(90deg, #b8d3e6 0 30px, #8db9d3 30px 32px); }
+.optical-scene h1 { font: 800 80px/1 system-ui; color: #173650; }
+.glass { position: absolute; left: 60px; top: 90px; width: 260px;
+  height: 100px; border-radius: 32px; isolation: isolate;
+  background: #ffffff16; border: 1px solid #fff9; color: #173650;
+  box-shadow: inset 0 1px 1px white, 0 8px 24px #17365030; }
+.glass-optics { position: absolute; inset: 0; z-index: -1;
+  overflow: hidden; border-radius: inherit; pointer-events: none; }
+.glass-sampler { position: absolute; inset: 0; overflow: visible; }
+.glass-scene-copy { position: absolute; top: 0; left: 0;
+  right: auto; bottom: auto; max-width: none; transform-origin: 0 0; }</style><div class="optical-stage">
+  <!-- Decorative scene only: no controls or live inputs. -->
+  <div class="optical-scene" aria-hidden="true">
+    <h1>MAKE IT FLOW.</h1>
+  </div>
+  <button class="glass" id="myLens">A new perspective</button>
+</div>
+<script src="../optics.js?v=20260929-2"></script>
+<!-- Add the CSS and JavaScript from the next two tabs. --><script>// Load optics.js first. One map per lens, generated to fit its shape.
+const lens = document.querySelector('#myLens');
+const scene = document.querySelector('.optical-scene');
+const glass = new LiquidGlass(lens, scene, {
+  strength: 22,    // Displacement in CSS pixels; 0 = unchanged scene
+  blur: 0.3,       // Frosting, independent of refraction
+  dispersion: 0.02 // Color separation at the curved edge
+});
+
+// After moving a lens (or while it transitions):
+LiquidGlass.invalidate(400);
+
+// After changing the decorative scene's markup:
+glass.refreshScene();
+
+// Before removing a lens: glass.destroy();
+// The engine samples this explicit scene, not arbitrary page content.
+// Keep controls outside the scene; use translate for lens movement.</script>

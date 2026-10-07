@@ -1,0 +1,105 @@
+{
+  "revision": "optics.js?v=20261004-4",
+  "date": "2026-10-04T21:44:37.365Z",
+  "viewport": [
+    414,
+    760
+  ],
+  "dpr": 2,
+  "phases": [
+    {
+      "name": "idle",
+      "frames": 90,
+      "p50FrameMs": 16.7,
+      "p95FrameMs": 17.6,
+      "maxFrameMs": 17.7,
+      "rectReads": 0,
+      "maps": 0,
+      "encodeMs": 0,
+      "svgWrites": 0,
+      "durationMs": 1500
+    },
+    {
+      "name": "move lens",
+      "frames": 120,
+      "p50FrameMs": 16.7,
+      "p95FrameMs": 17.7,
+      "maxFrameMs": 17.8,
+      "rectReads": 54,
+      "maps": 0,
+      "encodeMs": 0,
+      "svgWrites": 0,
+      "durationMs": 2000
+    },
+    {
+      "name": "resize lens",
+      "frames": 90,
+      "p50FrameMs": 16.7,
+      "p95FrameMs": 16.8,
+      "maxFrameMs": 17.7,
+      "rectReads": 180,
+      "maps": 44,
+      "encodeMs": 13.3,
+      "svgWrites": 312,
+      "durationMs": 1500
+    },
+    {
+      "name": "animated backdrop",
+      "frames": 120,
+      "p50FrameMs": 16.7,
+      "p95FrameMs": 17.6,
+      "maxFrameMs": 17.8,
+      "rectReads": 0,
+      "maps": 0,
+      "encodeMs": 0,
+      "svgWrites": 0,
+      "durationMs": 2001
+    },
+    {
+      "name": "morph capsule",
+      "frames": 90,
+      "p50FrameMs": 16.7,
+      "p95FrameMs": 16.8,
+      "maxFrameMs": 17.1,
+      "rectReads": 180,
+      "maps": 15,
+      "encodeMs": 4,
+      "svgWrites": 303,
+      "durationMs": 1500
+    },
+    {
+      "name": "offscreen idle",
+      "frames": 60,
+      "p50FrameMs": 16.7,
+      "p95FrameMs": 17.5,
+      "maxFrameMs": 17.6,
+      "rectReads": 0,
+      "maps": 0,
+      "encodeMs": 0,
+      "svgWrites": 0,
+      "durationMs": 1000
+    }
+  ],
+  "filterPasses": [
+    {
+      "id": "glass-optics-17",
+      "displacements": 1
+    },
+    {
+      "id": "glass-optics-2",
+      "displacements": 1
+    },
+    {
+      "id": "glass-optics-3",
+      "displacements": 1
+    },
+    {
+      "id": "glass-optics-4",
+      "displacements": 1
+    },
+    {
+      "id": "glass-optics-5",
+      "displacements": 1
+    }
+  ]
+}

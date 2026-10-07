@@ -1,4 +1,4 @@
-<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Integration verification</title><style>.optical-filter-defs { position: absolute; width: 0; height: 0; }
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LiquidLens integration example</title><style>.optical-filter-defs { position: absolute; width: 0; height: 0; }
 .optical-stage { position: relative; overflow: hidden; height: 360px;
   border-radius: 24px; isolation: isolate; }
 .optical-scene { position: absolute; inset: 0; overflow: hidden;
@@ -7,10 +7,18 @@
 .glass { position: absolute; left: 60px; top: 90px; width: 260px;
   height: 100px; border-radius: 32px; isolation: isolate;
   background: #ffffff16; border: 1px solid #fff9; color: #173650;
-  box-shadow: inset 0 1px 1px white, 0 8px 24px #17365030; }
+  box-shadow: inset 0 1px 0 #fffb, 0 0 0 .5px #17365050, 0 8px 24px #17365030; }
 .glass-optics { position: absolute; inset: 0; z-index: -1;
   overflow: hidden; border-radius: inherit; pointer-events: none; }
 .glass-sampler { position: absolute; inset: 0; overflow: visible; }
+.glass-optics::after { content: ""; position: absolute; inset: 0;
+  background: var(--glass-tint, #646e8047); pointer-events: none; }
+[data-glass-material="clear"] { --glass-tint: #ffffff08; }
+[data-glass-enabled="false"] { --glass-tint: transparent; }
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  .has-optics { --glass-tint: #e9edf2; }
+  .glass-sampler { display: none; }
+}
 .glass-scene-copy { position: absolute; top: 0; left: 0;
   right: auto; bottom: auto; max-width: none; transform-origin: 0 0; }</style><div class="optical-stage">
   <!-- Decorative scene only: no controls or live inputs. -->
@@ -19,22 +27,24 @@
   </div>
   <button class="glass" id="myLens">A new perspective</button>
 </div>
-<script src="../optics.js?v=20260929-2"></script>
+<script src="../optics.js?v=20261004-6"></script>
 <!-- Add the CSS and JavaScript from the next two tabs. --><script>// Load optics.js first. One map per lens, generated to fit its shape.
 const lens = document.querySelector('#myLens');
 const scene = document.querySelector('.optical-scene');
 const glass = new LiquidGlass(lens, scene, {
-  strength: 22,    // Displacement in CSS pixels; 0 = unchanged scene
-  blur: 0.3,       // Frosting, independent of refraction
-  dispersion: 0.02 // Color separation at the curved edge
+  strength: 16,    // Rim displacement in CSS pixels
+  blur: 3.2,       // Frosting before refraction
+  material: "regular", // Neutral tint; "clear" for optical studies
+  dispersion: 0   // Set to 0.02 for subtle edge color separation
 });
 
 // After moving a lens (or while it transitions):
-LiquidGlass.invalidate(400);
+glass.invalidate(400);
 
 // After changing the decorative scene's markup:
 glass.refreshScene();
 
+// For an unfiltered scene comparison: glass.set({ enabled: false });
 // Before removing a lens: glass.destroy();
 // The engine samples this explicit scene, not arbitrary page content.
-// Keep controls outside the scene; use translate for lens movement.</script>
+// Keep controls outside the scene; use translate for lens movement.</script></html>

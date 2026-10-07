@@ -1,0 +1,165 @@
+{
+  "viewport": [
+    768,
+    760
+  ],
+  "checks": [
+    {
+      "name": "Regular is the default material",
+      "pass": true
+    },
+    {
+      "name": "Clear material uses low frosting",
+      "pass": true
+    },
+    {
+      "name": "Preset fits canvas: circle",
+      "pass": true
+    },
+    {
+      "name": "Preset fits canvas: pill",
+      "pass": true
+    },
+    {
+      "name": "Preset fits canvas: squircle",
+      "pass": true
+    },
+    {
+      "name": "Preset fits canvas: card",
+      "pass": true
+    },
+    {
+      "name": "Scene alignment survives resizing and keyboard movement",
+      "pass": true
+    },
+    {
+      "name": "Comparison bypasses the SVG filter",
+      "pass": true
+    },
+    {
+      "name": "Unfiltered source has no subpixel registration seam",
+      "pass": true
+    },
+    {
+      "name": "Background refresh: grid",
+      "pass": true
+    },
+    {
+      "name": "Background refresh: art",
+      "pass": true
+    },
+    {
+      "name": "Background refresh: type",
+      "pass": true
+    },
+    {
+      "name": "Reset restores optical parameters",
+      "pass": true
+    },
+    {
+      "name": "No page overflow",
+      "pass": true
+    },
+    {
+      "name": "IDs remain unique",
+      "pass": true
+    },
+    {
+      "name": "All ten experiments are present",
+      "pass": true
+    },
+    {
+      "name": "Gallery filter: navigation",
+      "pass": true
+    },
+    {
+      "name": "Gallery filter: media",
+      "pass": true
+    },
+    {
+      "name": "Gallery filter: controls",
+      "pass": true
+    },
+    {
+      "name": "Gallery filter: widgets",
+      "pass": true
+    },
+    {
+      "name": "Dock selection updates status",
+      "pass": true
+    },
+    {
+      "name": "Playback advances while visible",
+      "pass": true
+    },
+    {
+      "name": "Track switching resets progress",
+      "pass": true
+    },
+    {
+      "name": "Keyboard seeking reaches the duration",
+      "pass": true
+    },
+    {
+      "name": "Capsule morph activates call state",
+      "pass": true
+    },
+    {
+      "name": "Morphed capsule scene stays registered",
+      "pass": true
+    },
+    {
+      "name": "Dispersion can be disabled",
+      "pass": true
+    },
+    {
+      "name": "Control material preset updates selection",
+      "pass": true
+    },
+    {
+      "name": "Toolbar tool selection updates status",
+      "pass": true
+    },
+    {
+      "name": "Notification dismisses",
+      "pass": true
+    },
+    {
+      "name": "Notification restores",
+      "pass": true
+    },
+    {
+      "name": "Weather updates its replicated scene",
+      "pass": true
+    },
+    {
+      "name": "Map destination changes",
+      "pass": true
+    },
+    {
+      "name": "Moving map marker stays registered",
+      "pass": true
+    },
+    {
+      "name": "Dialog opens with active glass",
+      "pass": true
+    },
+    {
+      "name": "Dialog closes",
+      "pass": true
+    },
+    {
+      "name": "Anatomy can bypass refraction",
+      "pass": true
+    },
+    {
+      "name": "Export uses the updated engine API",
+      "pass": true
+    },
+    {
+      "name": "All visible demo replicas retain exact scene alignment",
+      "pass": true
+    }
+  ],
+  "errors": []
+}

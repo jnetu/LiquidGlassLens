@@ -1,0 +1,82 @@
+{
+  "date": "2026-10-04T17:37:55.313Z",
+  "viewport": [
+    414,
+    760
+  ],
+  "dpr": 2,
+  "phases": [
+    {
+      "name": "idle",
+      "frames": 90,
+      "p50FrameMs": 16.7,
+      "p95FrameMs": 17.6,
+      "maxFrameMs": 17.7,
+      "rectReads": 0,
+      "maps": 0,
+      "encodeMs": 0,
+      "svgWrites": 0,
+      "durationMs": 1500
+    },
+    {
+      "name": "move lens",
+      "frames": 120,
+      "p50FrameMs": 16.7,
+      "p95FrameMs": 17.6,
+      "maxFrameMs": 17.7,
+      "rectReads": 240,
+      "maps": 0,
+      "encodeMs": 0,
+      "svgWrites": 0,
+      "durationMs": 2001
+    },
+    {
+      "name": "resize lens",
+      "frames": 90,
+      "p50FrameMs": 16.7,
+      "p95FrameMs": 17.6,
+      "maxFrameMs": 17.6,
+      "rectReads": 180,
+      "maps": 89,
+      "encodeMs": 154.7,
+      "svgWrites": 983,
+      "durationMs": 1500
+    },
+    {
+      "name": "animated backdrop",
+      "frames": 120,
+      "p50FrameMs": 16.7,
+      "p95FrameMs": 17.6,
+      "maxFrameMs": 17.6,
+      "rectReads": 0,
+      "maps": 0,
+      "encodeMs": 0,
+      "svgWrites": 0,
+      "durationMs": 2000
+    },
+    {
+      "name": "morph capsule",
+      "frames": 90,
+      "p50FrameMs": 16.7,
+      "p95FrameMs": 17.6,
+      "maxFrameMs": 17.6,
+      "rectReads": 652,
+      "maps": 15,
+      "encodeMs": 75.6,
+      "svgWrites": 112,
+      "durationMs": 1502
+    },
+    {
+      "name": "offscreen idle",
+      "frames": 60,
+      "p50FrameMs": 16.7,
+      "p95FrameMs": 17.6,
+      "maxFrameMs": 66.7,
+      "rectReads": 0,
+      "maps": 0,
+      "encodeMs": 0,
+      "svgWrites": 0,
+      "durationMs": 1051
+    }
+  ]
+}

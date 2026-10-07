@@ -1,0 +1,53 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>LiquidLens performance audit</title>
+<style>body{margin:0;font:14px system-ui;background:#f0f3f7}header{padding:16px}button{padding:8px}iframe{width:100%;height:760px;border:0}pre{padding:16px;white-space:pre-wrap}</style>
+<header><label>Viewport <select id="size"><option value="414">414 px</option><option value="1280">1280 px</option></select></label> <button id="run">Run performance audit</button> <span id="status">Ready</span></header><iframe id="app" title="Playground under test" src="../index.html?audit=20261004-3#lab"></iframe><pre id="results"></pre>
+<script>
+const app=document.querySelector('#app'), status=document.querySelector('#status'), result=document.querySelector('#results');
+app.style.width='414px';
+document.querySelector('#size').onchange=event=>app.style.width=event.target.value+'px';
+const frame=w=>new Promise(resolve=>w.requestAnimationFrame(resolve));
+const settle=async(w,count=12)=>{for(let i=0;i<count;i++) await frame(w)};
+document.querySelector('#run').onclick=async()=>{
+ document.querySelector('#run').disabled=true;
+ let restore=()=>{};
+ try {
+  await new Promise(resolve=>{app.onload=resolve;app.src='../index.html?audit='+Date.now()+'#lab'});app.onload=null;
+  const w=app.contentWindow,d=w.document;
+  if(!w.LiquidGlass) throw Error('Wait for the playground to load.');
+  const counts={rects:0,maps:0,mapMs:0,filterWrites:0};
+  const rect=w.Element.prototype.getBoundingClientRect;
+  w.Element.prototype.getBoundingClientRect=function(){counts.rects++;return rect.call(this)};
+  const encode=w.HTMLCanvasElement.prototype.toDataURL;
+  w.HTMLCanvasElement.prototype.toDataURL=function(...args){const start=w.performance.now();const out=encode.apply(this,args);counts.maps++;counts.mapMs+=w.performance.now()-start;return out};
+  const attr=w.Element.prototype.setAttribute;
+  restore=()=>{w.Element.prototype.getBoundingClientRect=rect;w.HTMLCanvasElement.prototype.toDataURL=encode;w.Element.prototype.setAttribute=attr};
+  w.Element.prototype.setAttribute=function(...args){if(this.namespaceURI==='http://www.w3.org/2000/svg')counts.filterWrites++;return attr.apply(this,args)};
+  await d.fonts.ready;
+  const phases=[];
+  async function phase(name, count, action){
+   status.textContent=name;
+   const before={...counts}, intervals=[];let last=await frame(w);let start=w.performance.now();
+   for(let i=0;i<count;i++){if(action) action(i);const now=await frame(w);intervals.push(now-last);last=now}
+   const sorted=intervals.slice().sort((a,b)=>a-b);
+   phases.push({name,frames:count,p50FrameMs:+sorted[Math.floor(sorted.length*.5)].toFixed(2),p95FrameMs:+sorted[Math.floor(sorted.length*.95)].toFixed(2),maxFrameMs:+sorted.at(-1).toFixed(2),rectReads:counts.rects-before.rects,maps:counts.maps-before.maps,encodeMs:+(counts.mapMs-before.mapMs).toFixed(2),svgWrites:counts.filterWrites-before.filterWrites,durationMs:Math.round(w.performance.now()-start)});
+  }
+  const lab=d.querySelector('#lab');w.scrollTo({top:w.scrollY+d.querySelector('#lensCanvas').getBoundingClientRect().top-100,behavior:'instant'});await settle(w,24);
+  await phase('idle',90);
+  const lens=d.querySelector('#lensBox');
+  await phase('move lens',120,i=>lens.dispatchEvent(new w.KeyboardEvent('keydown',{key:i%60<30?'ArrowRight':'ArrowLeft',shiftKey:true,bubbles:true,cancelable:true})));
+  const width=d.querySelector('#sliderWidth');
+  await phase('resize lens',90,i=>{width.value=220+i%80;width.dispatchEvent(new w.Event('input',{bubbles:true}))});
+  d.querySelector('#resetLens').click();await settle(w);
+  d.querySelector('#animateScene').click();await phase('animated backdrop',120);d.querySelector('#animateScene').click();
+  d.querySelector('.island-demo-stage').scrollIntoView({block:'center',behavior:'instant'});await settle(w,24);
+  const capsuleRect=d.querySelector('#morphingCapsule').getBoundingClientRect();
+  if(capsuleRect.bottom<0||capsuleRect.top>w.innerHeight)throw Error('Morph target is offscreen.');
+  await phase('morph capsule',90,i=>{if(i%30===0)d.querySelectorAll('.island-trigger-btn')[i/30].click()});
+  w.scrollTo({top:d.body.scrollHeight,behavior:'instant'});await settle(w,24);await phase('offscreen idle',60);
+  restore();
+  const report={revision:d.querySelector('script[src*="optics.js"]').getAttribute('src'),date:new Date().toISOString(),viewport:[w.innerWidth,w.innerHeight],dpr:w.devicePixelRatio,phases,filterPasses:[...d.querySelectorAll('filter')].map(f=>({id:f.id,displacements:f.querySelectorAll('feDisplacementMap').length}))};
+  result.textContent=JSON.stringify(report,null,2);status.textContent='Completed';
+ }catch(error){result.textContent=error.stack;status.textContent='Failed'}finally{restore()}
+ document.querySelector('#run').disabled=false;
+};
+</script></html>

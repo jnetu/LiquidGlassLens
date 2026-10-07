@@ -1,0 +1,65 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>LiquidLens interaction audit</title>
+<style>body{margin:0;font:14px system-ui;background:#f0f3f7}header,pre{padding:16px}button{padding:8px}iframe{height:760px;border:0}pre{white-space:pre-wrap}</style>
+<header><label>Viewport <select id="size"><option>320</option><option selected>414</option><option>768</option><option>1280</option></select></label> <button id="run">Run interaction audit</button> <span id="status">Ready</span></header><iframe id="app" title="Playground under test" src="../index.html?regression=20261004-3#lab"></iframe><pre id="results"></pre>
+<script>
+const app=document.querySelector('#app'), status=document.querySelector('#status'), result=document.querySelector('#results');
+app.style.width='414px';document.querySelector('#size').onchange=e=>app.style.width=e.target.value+'px';
+const settle=async(w,n=8)=>{for(let i=0;i<n;i++)await new Promise(r=>w.requestAnimationFrame(r))};
+document.querySelector('#run').onclick=async()=>{
+ const checks=[],errors=[];document.querySelector('#run').disabled=true;
+ try {
+  await new Promise(resolve=>{app.onload=resolve;app.src='../index.html?audit='+Date.now()+'#lab'});app.onload=null;
+  const w=app.contentWindow,d=w.document,$=s=>d.querySelector(s),$$=s=>[...d.querySelectorAll(s)];
+  await d.fonts.ready;await settle(w);
+  const assert=(name,condition)=>{checks.push({name,pass:!!condition});if(!condition)errors.push(name)};
+  const show=async element=>{element.scrollIntoView({block:'center',behavior:'instant'});await settle(w,12)};
+  const choose=(id,value)=>{const e=$(id);e.value=value;e.dispatchEvent(new w.Event('change',{bubbles:true}))};
+  const range=(id,value)=>{const e=$(id);e.value=value;e.dispatchEvent(new w.Event('input',{bubbles:true}))};
+  const aligned=(source,copy)=>{if(!copy)return false;const a=source.getBoundingClientRect(),b=copy.getBoundingClientRect();return ['left','top','width','height'].every(key=>Math.abs(a[key]-b[key])<.05)};
+  const lens=$('#lensBox'),canvas=$('#lensCanvas'),source=canvas.querySelector(':scope>.optical-scene');
+  await show(canvas);$('#resetLens').click();await settle(w);
+  assert('Regular is the default material',lens.dataset.glassMaterial==='regular'&&$('#sliderBlur').value==='3.2');
+  choose('#materialSelect','clear');await settle(w);
+  assert('Clear material uses low frosting',lens.dataset.glassMaterial==='clear'&&$('#sliderBlur').value==='0.3');
+  for(const button of $$('.shape-btn')){button.click();await settle(w,6);const a=lens.getBoundingClientRect(),b=canvas.getBoundingClientRect();assert('Preset fits canvas: '+button.dataset.preset,a.left>=b.left&&a.right<=b.right&&a.top>=b.top&&a.bottom<=b.bottom)}
+  $('#resetLens').click();range('#sliderWidth',275);range('#sliderHeight',193);range('#sliderRadius',39);await settle(w,6);
+  for(const key of ['ArrowLeft','ArrowUp','ArrowRight','ArrowDown']){lens.dispatchEvent(new w.KeyboardEvent('keydown',{key,shiftKey:true,bubbles:true,cancelable:true}));await settle(w,3)}
+  assert('Scene alignment survives resizing and keyboard movement',aligned(source,lens.querySelector('.glass-scene-copy')));
+  lens.style.boxSizing='content-box';lens.style.padding='9.5px 12.25px';await settle(w,6);
+  const samplerFilter=lens.querySelector('.glass-sampler').style.filter.match(/glass-optics-\d+/)[0];
+  const map=$('#'+samplerFilter+' feImage'),inner=lens.getBoundingClientRect(),border=parseFloat(getComputedStyle(lens).borderLeftWidth);
+  assert('Padded content-box lenses sample their entire inner area',Math.abs(+map.getAttribute('width')-(inner.width-border*2))<.05&&Math.abs(+map.getAttribute('height')-(inner.height-border*2))<.05);
+  lens.style.boxSizing='';lens.style.padding='';await settle(w,6);
+  $('#compareRefraction').click();await settle(w);
+  assert('Comparison bypasses the SVG filter',getComputedStyle(lens.querySelector('.glass-sampler')).filter==='none');
+  assert('Unfiltered source has no subpixel registration seam',aligned(source,lens.querySelector('.glass-scene-copy')));
+  for(const name of ['grid','art','type']){choose('#sceneSelect',name);await settle(w,4);assert('Background refresh: '+name,lens.querySelector('.glass-scene-copy').dataset.scene===name)}
+  $('#resetLens').click();await settle(w);
+  assert('Reset restores optical parameters',lens.dataset.glassMaterial==='regular'&&$('#sliderStrength').value==='16'&&$('#sliderTr').value==='5');
+  assert('No page overflow',d.documentElement.scrollWidth<=w.innerWidth+1);
+  assert('IDs remain unique',[...new Set($$('[id]').map(e=>e.id))].length===$$('[id]').length);
+  assert('All ten experiments are present',$$('.bento-item').length===10);
+  for(const category of ['navigation','media','controls','widgets']){$(`.gallery-filter [data-category="${category}"]`).click();await settle(w,4);assert('Gallery filter: '+category,$$('.bento-item:not([hidden])').every(e=>e.dataset.category===category))}
+  $('.gallery-filter [data-category="all"]').click();await settle(w);
+  await show($('.dock-stage-wrapper'));$$('.dock-icon-capsule')[1].click();assert('Dock selection updates status',$('.demo-status').textContent.includes('Safari Browser'));
+  await show($('.player-stage'));const start=+$('#scrubberTrack').getAttribute('aria-valuenow');$('#btnPlayPause').click();await new Promise(r=>setTimeout(r,2100));assert('Playback advances while visible',+$('#scrubberTrack').getAttribute('aria-valuenow')>start);$('#btnPlayPause').click();
+  $('[aria-label="Next Track"]').click();assert('Track switching resets progress',$('.track-title').textContent==='Prismatic Drift'&&$('#elapsedTime').textContent==='00:00');
+  $('#scrubberTrack').dispatchEvent(new w.KeyboardEvent('keydown',{key:'End',bubbles:true,cancelable:true}));assert('Keyboard seeking reaches the duration',$('#elapsedTime').textContent===$('#durationTime').textContent);
+  await show($('.island-demo-stage'));$('.island-trigger-btn[data-state="stateCall"]').click();await settle(w,44);assert('Capsule morph activates call state',$('#stateCall').classList.contains('active'));assert('Morphed capsule scene stays registered',aligned($('.island-demo-stage>.optical-scene'),$('#morphingCapsule .glass-scene-copy')));
+  await show($('.controls-suite-content'));const dispersion=$('#tactileGlassSwitch');dispersion.click();await settle(w);assert('Dispersion can be disabled',dispersion.getAttribute('aria-checked')==='false');dispersion.click();await settle(w);
+  $$('.segmented-pill-item')[1].click();assert('Control material preset updates selection',$$('.segmented-pill-item')[1].getAttribute('aria-pressed')==='true');
+  await show($('.toolbar-stage'));$('[data-tool="Pen"]').click();assert('Toolbar tool selection updates status',$('#toolStatus').textContent.includes('Pen'));
+  await show($('#demoNotification'));$('#dismissNotification').click();assert('Notification dismisses',$('#demoNotification').hidden);$('#restoreNotification').click();assert('Notification restores',!$('#demoNotification').hidden);
+  await show($('.weather-stage'));$('#changeWeather').click();await settle(w);assert('Weather updates its replicated scene',$('#weatherTemp').textContent==='24°'&&$('.weather-widget .glass-scene-copy').classList.contains('scene-rain'));
+  await show($('.map-stage'));$('#nextPlace').click();await settle(w,44);assert('Map destination changes',$('#mapLabel').textContent.includes('riverside'));assert('Moving map marker stays registered',aligned($('.map-stage>.optical-scene'),$('#mapMarker .glass-scene-copy')));
+  await show($('#openGlassDialog'));$('#openGlassDialog').click();await settle(w);assert('Dialog opens with active glass',$('#glassDialog').open&&!!$('#glassDialog .glass-scene-copy'));$('#closeGlassDialog').click();assert('Dialog closes',!$('#glassDialog').open);
+  await show($('#anatomyTargetBox'));$('.layer-toggle-card[data-layer-target="refraction"]').click();await settle(w);assert('Anatomy can bypass refraction',getComputedStyle($('#anatomyTargetBox .glass-sampler')).filter==='none');$('.layer-toggle-card[data-layer-target="refraction"]').click();
+  $('.code-tab-btn[data-tab="js"]').click();assert('Export uses the updated engine API',$('#panelJs').textContent.includes('glass.invalidate(400)')&&$('#panelJs').textContent.includes('material: "regular"'));
+  const registered=[];
+  for(const stage of $$('.optical-stage')){if(stage.closest('dialog')&&!stage.closest('dialog').open)continue;await show(stage);const scene=stage.querySelector(':scope>.optical-scene');for(const copy of stage.querySelectorAll('.glass-scene-copy'))registered.push(aligned(scene,copy))}
+  assert('All visible demo replicas retain exact scene alignment',registered.length>=15&&registered.every(Boolean));
+  result.textContent=JSON.stringify({viewport:[w.innerWidth,w.innerHeight],checks,errors},null,2);status.textContent=errors.length?'Failed':'Completed';
+ }catch(error){result.textContent=JSON.stringify({checks,error:error.stack},null,2);status.textContent='Failed'}
+ document.querySelector('#run').disabled=false;
+};
+</script></html>

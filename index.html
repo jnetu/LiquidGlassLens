@@ -11,11 +11,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@600;700;800&amp;display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css?v=20260929-2">
+  <link rel="stylesheet" href="style.css?v=20261004-6">
 </head>
 <body>
 
-  <!-- Ambient Dynamic Lighting & Grid -->
+  <!-- Ambient Lighting & Grid -->
   <div class="ambient-bg" aria-hidden="true">
     <div class="ambient-grid"></div>
     <div class="ambient-orb ambient-orb-1"></div>
@@ -147,9 +147,9 @@
       <section id="lab" class="section-container">
         <div class="section-header">
           <span class="section-tag">Interactive Sandbox</span>
-          <h2 class="section-title">A little less blur. A lot more bend.</h2>
+          <h2 class="section-title">A calm center. A liquid edge.</h2>
           <p class="section-subtitle">
-            Drag across the letters. Follow a straight line through the edge. This is where transparency becomes a material. Use arrow keys to move the focused lens.
+            Study the frosted surface inspired by system controls, or switch to clear glass to inspect the bend. Drag across type and straight lines. Arrow keys move the focused lens.
           </p>
         </div>
 
@@ -165,7 +165,7 @@
             </div>
             <!-- The Draggable Interactive Lens Element -->
             <div class="fx-layer interactive-lens-element" id="activeInteractiveLens">
-              <div class="box" id="lensBox" role="group" tabindex="0" aria-label="Movable glass lens. Use arrow keys to move; Shift for larger steps." style="--w: 220px; --h: 120px; --r: 32px; --tr: 15%;">
+              <div class="box" id="lensBox" role="group" tabindex="0" aria-label="Movable glass lens. Use arrow keys to move; Shift for larger steps." style="--w: 220px; --h: 120px; --r: 32px; --tr: 5%;">
                 <span class="circle-overlay"></span>
               </div>
               <div class="lens-badge-label">Drag / tap / arrow keys</div>
@@ -177,6 +177,11 @@
             <div class="panel-title">
               <span>Make it yours</span>
               <span style="font-size: 0.8rem; color: var(--accent-color);">Live optics ↗</span>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="materialSelect">Glass material</label>
+              <select id="materialSelect"><option value="regular">Regular / frosted controls</option><option value="clear">Clear / optical study</option></select>
             </div>
 
             <!-- Preset Shapes -->
@@ -218,22 +223,22 @@
             <div class="control-group">
               <div class="control-label">
                 <label for="sliderTr">Highlight spread</label>
-                <span class="val-display" id="valTr">15%</span>
+                <span class="val-display" id="valTr">5%</span>
               </div>
-              <input type="range" class="range-slider" id="sliderTr" min="5" max="45" value="15">
+              <input type="range" class="range-slider" id="sliderTr" min="5" max="45" value="5">
             </div>
 
             <div class="control-group">
               <div class="control-label">
                 <label for="sliderStrength">Refraction strength</label>
-                <span class="val-display" id="valStrength">22px</span>
+                <span class="val-display" id="valStrength">16px</span>
               </div>
-              <input type="range" class="range-slider" id="sliderStrength" min="0" max="40" value="22">
+              <input type="range" class="range-slider" id="sliderStrength" min="0" max="40" value="16">
             </div>
 
             <div class="control-group">
-              <div class="control-label"><label for="sliderBlur">Frosting</label><span class="val-display" id="valBlur">0.3px</span></div>
-              <input type="range" class="range-slider" id="sliderBlur" min="0" max="5" step="0.1" value="0.3">
+              <div class="control-label"><label for="sliderBlur">Frosting</label><span class="val-display" id="valBlur">3.2px</span></div>
+              <input type="range" class="range-slider" id="sliderBlur" min="0" max="8" step="0.1" value="3.2">
             </div>
             <div class="control-group">
               <label class="control-label" for="sceneSelect">Behind the glass</label>
@@ -244,7 +249,7 @@
               <button class="utility-btn" id="animateScene" aria-pressed="false">Animate scene</button>
               <button class="utility-btn" id="resetLens">Reset</button>
             </div>
-            <p class="lab-hint">Turn refraction off to compare the exact same scene. Try the grid to see the curved edge.</p>
+            <p class="lab-hint">Regular has a neutral tint and a frosted center. Clear reveals the lens geometry. Turn refraction off to compare the original scene.</p>
             <!-- Live Code Snippet Output -->
             <div class="live-css-snippet">
               <button class="btn-copy-live-css" id="btnCopyLiveCss">Copy</button>
@@ -705,7 +710,7 @@
                 <span class="layer-num-badge">5</span>
                 <span class="layer-meta-text">
                   <span class="layer-name">Inner glass rim (.circle-overlay)</span>
-                  <span class="layer-css-code">border: 1px solid rgb(255 255 255 / 28%)</span>
+                  <span class="layer-css-code">border: 1px solid rgb(255 255 255 / 12%)</span>
                 </span>
               </span>
               <span class="layer-checkbox-mock">✓</span>
@@ -793,7 +798,7 @@
     </div>
   </dialog>
   <noscript><p class="noscript-note">Enable JavaScript to use the refraction engine and interactive experiments.</p></noscript>
-  <script src="optics.js?v=20260929-2"></script>
-  <script src="script.js?v=20260929-2"></script>
+  <script src="optics.js?v=20261004-6"></script>
+  <script src="script.js?v=20261004-6"></script>
 </body>
 </html>
